@@ -1,0 +1,14 @@
+{
+    "name": "joepriest/passwordreset",
+    "description": "A a console command to reset user passwords",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joe Priest",
+            "email": "joe@infusion-it.co.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
