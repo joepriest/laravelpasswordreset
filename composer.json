@@ -9,6 +9,14 @@
             "email": "joe@infusion-it.co.uk"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.2.*"
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "JoePriest\\PasswordReset\\": "src/"
+        }
+    }
 }
