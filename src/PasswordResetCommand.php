@@ -12,7 +12,7 @@ class PasswordResetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:resetpassword {user? : The ID of the user  (You will be prompted to choose a user if you don\'t provide an ID)} {password? : Optionally choose a new password}';
+    protected $signature = 'user:resetpassword {user? : The ID of the user} {password? : Optionally choose a new password} {--force=false}';
 
     /**
      * The console command description.
@@ -65,7 +65,16 @@ class PasswordResetCommand extends Command
 
             $randomPassword = str_random(14);
 
-            $password = $this->ask("What should the new password be for {$user->{$this->searchField}}? Leave blank to use the following:", $randomPassword);
+            if ($this->option('force')) {
+
+                $password = $randomPassword;
+
+            }
+            else{
+
+                $password = $this->ask("What should the new password be for {$user->{$this->searchField}}? Leave blank to use the following:", $randomPassword);
+
+            }
 
         }
 
