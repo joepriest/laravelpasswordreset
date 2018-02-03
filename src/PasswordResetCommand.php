@@ -32,6 +32,7 @@ class PasswordResetCommand extends Command
     {
         parent::__construct();
 
+        $this->userModel = config('passwordreset.user_model');
         $this->searchField = config('passwordreset.search_field');
         $this->passwordField = config('passwordreset.password_field');
 
@@ -48,14 +49,14 @@ class PasswordResetCommand extends Command
         $this->comment('passwordField from config: '.$this->passwordField);
 
         // If no user ID was provided, search for a user instead
-        if ( !$user = User::find($this->argument('user')) ){
+        if ( !$user = $this->userModel::find($this->argument('user')) ){
 
             // Get user search field into an array formatted for suggestions
-            $users = User::select($this->searchField)->get()->pluck($this->searchField)->all();
+            $users = $this->userModel::select($this->searchField)->get()->pluck($this->searchField)->all();
 
             $searchResult = $this->anticipate('Which user\'s password would you like to reset?', $users);
 
-            $user = User::where($this->searchField, $searchResult)->first();
+            $user = $this->userModel::where($this->searchField, $searchResult)->first();
 
         }
 
