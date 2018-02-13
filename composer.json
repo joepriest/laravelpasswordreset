@@ -18,5 +18,12 @@
         "psr-4": {
             "JoePriest\\PasswordReset\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JoePriest\\PasswordReset\\PasswordResetServiceProvider"
+            ]
+        }
     }
 }
