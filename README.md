@@ -1,6 +1,8 @@
 # Password Reset
 A simple artisan command to reset user passwords.
 
+[![Latest Stable Version](https://poser.pugx.org/joepriest/passwordreset/v/stable?format=flat-square)](https://packagist.org/packages/joepriest/passwordreset) [![Total Downloads](https://poser.pugx.org/joepriest/passwordreset/downloads?format=flat-square)](https://packagist.org/packages/joepriest/passwordreset) [![License](https://poser.pugx.org/joepriest/passwordreset/license?format=flat-square)](https://packagist.org/packages/joepriest/passwordreset)
+
 ## Installation
 
 Install the package via Composer:
