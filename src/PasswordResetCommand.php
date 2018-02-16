@@ -2,7 +2,6 @@
 
 namespace JoePriest\PasswordReset;
 
-use App\User;
 use Illuminate\Console\Command;
 
 class PasswordResetCommand extends Command
@@ -12,7 +11,7 @@ class PasswordResetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:resetpassword {user? : The ID of the user} {password? : Optionally choose a new password} {--force=false}';
+    protected $signature = 'user:resetpassword {user? : The ID of the user} {password? : Optionally choose a new password} {--random}';
 
     /**
      * The console command description.
@@ -45,9 +44,6 @@ class PasswordResetCommand extends Command
      */
     public function handle()
     {
-
-        $this->comment('passwordField from config: '.$this->passwordField);
-
         // If no user ID was provided, search for a user instead
         if ( !$user = $this->userModel::find($this->argument('user')) ){
 
@@ -61,11 +57,16 @@ class PasswordResetCommand extends Command
         }
 
         // If no password was provided, ask for one or generate a random one
-        if ( !$password = $this->argument('password') ){
+        if( $this->hasArgument('password') && $this->argument('password') != ''){
+
+            $password = $this->argument('password');
+
+        }
+        else{
 
             $randomPassword = str_random(14);
 
-            if ($this->option('force')) {
+            if( $this->hasOption('random') && $this->option('random') == true){
 
                 $password = $randomPassword;
 
